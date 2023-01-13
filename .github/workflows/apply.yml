@@ -1,7 +1,10 @@
 name: Terraform Apply
 
 on:
-  pull_request:
+  workflow_run:
+    workflows: ["Terraform Plan"]
+    types:
+    - completed
 
 env:
   TF_SA: github-deployments@sam-gallagher-tutorials-001.iam.gserviceaccount.com
