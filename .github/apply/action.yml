@@ -47,13 +47,20 @@ runs:
       run: |
         terraform init
 
+    # - name: Download Plan
+    #   id: download-plan
+    #   uses: dawidd6/action-download-artifact@v2
+    #   with:
+    #     github_token: ${{ inputs.github_token }}
+    #     workflow: plan.yml
+    #     pr: ${{ inputs.pr_id }}
+    #     name: ${{ inputs.pr_id }}-tf-plan
+    #     path: ${{ inputs.terraform_directory }}
+
     - name: Download Plan
       id: download-plan
-      uses: dawidd6/action-download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
-        github_token: ${{ inputs.github_token }}
-        workflow: plan.yml
-        pr: ${{ inputs.pr_id }}
         name: ${{ inputs.pr_id }}-tf-plan
         path: ${{ inputs.terraform_directory }}
 
