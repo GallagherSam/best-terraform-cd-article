@@ -2,7 +2,7 @@ name: Terraform Apply
 
 on:
   workflow_run:
-    workflows: ["plan.yml"]
+    workflows: ["Terraform Plan"]
     branches:
     - 'feature/**'
     types:
