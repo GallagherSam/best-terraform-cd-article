@@ -2,9 +2,6 @@ name: Terraform Apply
 
 on:
   pull_request:
-# on:
-#   pull_request_review:
-#     types: [submitted]
 
 env:
   TF_SA: github-deployments@sam-gallagher-tutorials-001.iam.gserviceaccount.com
