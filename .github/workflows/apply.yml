@@ -1,13 +1,8 @@
 name: Terraform Apply
 
 on:
-  workflow_run:
-    workflows:
-      - "Terraform Plan"
-    branches:
-      - 'feature/**'
-    types:
-      - completed
+  pull_request_review:
+    types: [submitted]
 
 env:
   TF_SA: github-deployments@sam-gallagher-tutorials-001.iam.gserviceaccount.com
@@ -17,7 +12,7 @@ env:
 jobs:
   terraform_apply:
     runs-on: ubuntu-latest
-    # if: github.event.review.state == 'approved'
+    if: github.event.review.state == 'approved'
     steps:
       - uses: actions/checkout@v3
 
