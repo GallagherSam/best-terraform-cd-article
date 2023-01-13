@@ -1,0 +1,36 @@
+name: Terraform Apply
+
+on:
+  pull_request_review:
+    types: [submitted]
+
+env:
+  TF_SA: <GOOGLE_SA_EMAIL>
+  TERRAFORM_VERSION: "1.2.9"
+  TF_IN_AUTOMATION: "True"
+
+jobs:
+  terraform_apply:
+    runs-on: ubuntu-latest
+    if: github.event.review.state == 'approved'
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Get PR ID
+        id: pr-id
+        shell: bash
+        env:
+          GITHUB_REF: ${{ inputs.github_ref }}
+        run: |
+          PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')
+          echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_OUTPUT
+
+      - name: Terraform Apply
+        uses: ./.github/apply
+        with:
+          terraform_sa: ${{ env.TF_SA }}
+          terraform_directory: "terraform"
+          terraform_version: ${{ env.TERRAFORM_VERSION }}
+          google_sa_key: ${{ secrets.GOOGLE_CREDENTIALS }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pr_id: ${{ steps.pr-id.outputs.PR_NUMBER }}
