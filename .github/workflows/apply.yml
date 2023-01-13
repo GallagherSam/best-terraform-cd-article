@@ -2,11 +2,12 @@ name: Terraform Apply
 
 on:
   workflow_run:
-    workflows: ["Terraform Plan"]
+    workflows:
+      - "Terraform Plan"
     branches:
-    - 'feature/**'
+      - 'feature/**'
     types:
-    - completed
+      - completed
 
 env:
   TF_SA: github-deployments@sam-gallagher-tutorials-001.iam.gserviceaccount.com
