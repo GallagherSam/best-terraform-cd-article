@@ -5,7 +5,7 @@ on:
     types: [submitted]
 
 env:
-  TF_SA: <GOOGLE_SA_EMAIL>
+  TF_SA: github-deployments@sam-gallagher-tutorials-001.iam.gserviceaccount.com
   TERRAFORM_VERSION: "1.2.9"
   TF_IN_AUTOMATION: "True"
 
