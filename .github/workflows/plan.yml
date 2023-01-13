@@ -1,9 +1,7 @@
 name: Terraform Plan
 
 on:
-  pull_request_target:
-    - opened
-    - synchronize
+  pull_request:
 
 env:
   TF_SA: github-deployments@sam-gallagher-tutorials-001.iam.gserviceaccount.com
@@ -33,5 +31,5 @@ jobs:
           terraform_sa: ${{ env.TF_SA }}
           terraform_version: ${{ env.TERRAFORM_VERSION }}
           google_sa_key: ${{ secrets.GOOGLE_CREDENTIALS }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GH_TOKEN }}
           pr_id: ${{ steps.pr-id.outputs.PR_NUMBER }}
