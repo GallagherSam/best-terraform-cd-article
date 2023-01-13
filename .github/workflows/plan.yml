@@ -1,7 +1,9 @@
 name: Terraform Plan
 
 on:
-  pull_request:
+  pull_request_target:
+    - opened
+    - synchronize
 
 env:
   TF_SA: github-deployments@sam-gallagher-tutorials-001.iam.gserviceaccount.com
