@@ -1,9 +1,15 @@
-resource "google_storage_bucket" "bucket" {
-  name          = "test-bucket-01234599"
-  location      = "US"
-  force_destroy = true
-
-  public_access_prevention = "enforced"
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~> 2.65"
+    }
+  }
+  required_version = ">= 1.1.0"
+  backend "azurerm" {
+  }
 }
 
-# test2
+provider "azurerm" {
+  features {}
+}
