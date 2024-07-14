@@ -1,4 +1,15 @@
-provider "google" {
-  project     = "sam-gallagher-tutorials-001"
-  region      = "us-central1"
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~> 2.65"
+    }
+  }
+  required_version = ">= 1.1.0"
+  backend "azurerm" {
+  }
+}
+
+provider "azurerm" {
+  features {}
 }
