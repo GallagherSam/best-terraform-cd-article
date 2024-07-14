@@ -5,3 +5,4 @@ resource "google_storage_bucket" "bucket" {
 
   public_access_prevention = "enforced"
 }
+# test
