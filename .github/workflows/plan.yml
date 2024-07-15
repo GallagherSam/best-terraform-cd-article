@@ -8,9 +8,6 @@ env:
   TERRAFORM_VERSION: "1.2.9"
   TF_IN_AUTOMATION: "True"
 
-permissions:
-  pull-requests: write
-
 jobs:
   terraform_plan:
     runs-on: ubuntu-latest
