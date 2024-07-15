@@ -1,9 +1,5 @@
-resource "google_storage_bucket" "bucket" {
-  name          = "test-bucket-01234599"
-  location      = "US"
-  force_destroy = true
-
-  public_access_prevention = "enforced"
+resource "random_password" "password" {
+  length           = 16
+  special          = true
+  override_special = "!#$%&*()-_=+[]{}<>:?"
 }
-
-# test
