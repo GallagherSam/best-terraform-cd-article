@@ -30,16 +30,6 @@ runs:
         terraform_version: ${{ inputs.terraforom_version }}
         terraform_wrapper: false
 
-    - id: 'auth'
-      name: 'Authenticate to Google Cloud'
-      uses: 'google-github-actions/auth@v1'
-      with:
-        service_account: ${{ inputs.terraform_sa }}
-        credentials_json: ${{ inputs.google_sa_key }}
-
-    - name: 'Set up Cloud SDK'
-      uses: 'google-github-actions/setup-gcloud@v0.6.0'
-
     - name: Terraform Init
       id: init
       working-directory: ${{ inputs.terraform_directory }}
@@ -66,15 +56,15 @@ runs:
         terraform apply -input=false -no-color tfplan >> $GITHUB_OUTPUT
         echo 'EOF' >> $GITHUB_OUTPUT
 
-    - name: Comment Apply
-      id: comment-apply
-      uses: peter-evans/create-or-update-comment@v2
-      with:
-        token: ${{ inputs.github_token }}
-        issue-number: ${{ inputs.pr_id }}
-        body: |
-          Terraform Apply:
+    # - name: Comment Apply
+    #   id: comment-apply
+    #   uses: peter-evans/create-or-update-comment@v2
+    #   with:
+    #     token: ${{ inputs.github_token }}
+    #     issue-number: ${{ inputs.pr_id }}
+    #     body: |
+    #       Terraform Apply:
 
-          ```
-          ${{ steps.apply.outputs.apply }}
-          ```
+    #       ```
+    #       ${{ steps.apply.outputs.apply }}
+    #       ```
